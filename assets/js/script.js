@@ -149,4 +149,10 @@ function endQuiz() {
 // High scores are listed, sorted highest to lowest
 // User has option to take the quiz again
 
+
+/// STORE INITIALS
+/// STORE SCORE
+
+
+// button starts the quiz
 startBtn.addEventListener('click', startQuiz);
