@@ -1,4 +1,16 @@
 // PSEUDOCODE FOR QUIZ
+/// starter code (29th Dec) -- test in index !
+
+let timerEl = document.getElementById("time")
+let startScreen = documen.getElementById("start-screen")
+const startBtn = document.getElementById("start")
+const questionTitle = document.getElementById("question-title")
+const questionChoices = document.getElementById("choices")
+const endScreen = document.getElementById("end-screen")
+const finalScore = document.getElementById("final-score")
+const initials = document.getElementById("initals")
+const submitBtn = document.getElementById("submit")
+const feedbackEl = document.getElementById("feedback")
 
 // Set of questions --> array of objects
 // Each question needs the following:
@@ -6,12 +18,40 @@
   // Set of answers
   // Which answer is correct
 
+  let questions = [
+    {
+        1: "1) Commonly used data types DO NOT include",
+        choices: ["A. Strings", "B. Booleans", "C. Alerts", "D. Numbers"],
+        answer: "B. Booleans",
+    },
+    {
+        2: "2) The condition in an if/else statement is enclosed within _____.",
+        choices: ["A. Quotes", "B. Curly brackets", "C. Parentheses", "D. Square brackets"],
+        answer: "C. Parentheses",
+    },
+    {
+        3: "3) Arrays in JavaScript can be used to store ____.",
+        choices: ["A. Numbers and strings", "B. Other arrays", "C. Booleans", "D. All of the above"],
+        answer: "D. All of the above",
+    },
+    {
+        4: "4) String vaules must be enclosed within ______ when being assigned to variables",
+        choices: ["A. Commas", "B. Curly brackets", "C. Quotes", "D. Parentheses"],
+        answer: "B. Curly brackets",
+    },
+    {
+        5: "5) A very useful tool used during development and debugging for printing content to the debugger is:",
+        choices: ["A. Javascript", "B. Terminal/Bash", "C. For loops", "D. Console.log"],
+        answer: "C. For loops",
+    }
+]
+
 // Landing page:
   // Explanation of the quiz
   // Start button
 
 // Click the start button:
-  // Landing page goes away
+  // Landing page goes away (can be done with CSS --> questions have a class of "hide")
   // Timer starts (NEED a conditional in there to check whether the answer was correct, which means you need to track whether the answer was correct).
   // The first question appears (with its answers)
 
@@ -34,50 +74,10 @@
   // User is taken to the high scores page
   // High scores are listed, sorted highest to lowest
   // User has option to take the quiz again
-  
-
-/// starter code (29th Dec) -- test in index !
 
 
-let timerEl = document.getElementById("time")
-let startScreen = documen.getElementById("start-screen")
-const startBtn = document.getElementById("start")
-const questionTitle = document.getElementById("question-title")
-const questionChoices = document.getElementById("choices")
-const endScreen = document.getElementById("end-screen")
-const finalScore = document.getElementById("final-score")
-const initials = document.getElementById("initals")
-const submitBtn = document.getElementById("submit")
-const feedbackEl = document.getElementById("feedback")
 
 
-let questions = [
-    {
-        title: "First Question",
-        choices: "ChoiceA, ChoiceB, ChoiceC",
-        answer: "ChoiceB",
-    },
-    {
-        title: "First Question",
-        choices: "ChoiceA, ChoiceB, ChoiceC",
-        answer: "ChoiceB",
-    },
-    {
-        title: "First Question",
-        choices: "ChoiceA, ChoiceB, ChoiceC",
-        answer: "ChoiceB",
-    },
-    {
-        title: "First Question",
-        choices: "ChoiceA, ChoiceB, ChoiceC",
-        answer: "ChoiceB",
-    },
-    {
-        title: "First Question",
-        choices: "ChoiceA, ChoiceB, ChoiceC",
-        answer: "ChoiceB",
-    }
-]
 
 let timerInterval;
 let questionIndex = 0
