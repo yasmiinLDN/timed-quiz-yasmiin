@@ -21,27 +21,27 @@ const feedbackEl = document.getElementById("feedback")
 
 let questionQuiz = [
     {
-        title: "1) Commonly used data types DO NOT include",
+        qTitle: "1) Commonly used data types DO NOT include",
         choices: ["A. Strings", "B. Booleans", "C. Alerts", "D. Numbers"],
         answer: "B. Booleans",
     },
     {
-        title: "2) The condition in an if/else statement is enclosed within _____.",
+        qTitle: "2) The condition in an if/else statement is enclosed within _____.",
         choices: ["A. Quotes", "B. Curly brackets", "C. Parentheses", "D. Square brackets"],
         answer: "C. Parentheses",
     },
     {
-        title: "3) Arrays in JavaScript can be used to store ____.",
+        qTitle: "3) Arrays in JavaScript can be used to store ____.",
         choices: ["A. Numbers and strings", "B. Other arrays", "C. Booleans", "D. All of the above"],
         answer: "D. All of the above",
     },
     {
-        title: "4) String values must be enclosed within ______ when being assigned to variables",
+        qTitle: "4) String values must be enclosed within ______ when being assigned to variables",
         choices: ["A. Commas", "B. Curly brackets", "C. Quotes", "D. Parentheses"],
         answer: "B. Curly brackets",
     },
     {
-        title: "5) A very useful tool used during development and debugging for printing content to the debugger is:",
+        qTitle: "5) A very useful tool used during development and debugging for printing content to the debugger is:",
         choices: ["A. Javascript", "B. Terminal/Bash", "C. For loops", "D. Console.log"],
         answer: "C. For loops",
     }
@@ -79,7 +79,7 @@ getQuestions();
 function getQuestions() {
     let currentQuestion = questionQuiz[questionIndex]
 console.log(currentQuestion);
-    questionTitle.textContent = currentQuestion.title
+    questionTitle.textContent = currentQuestion.qTitle
     questionChoices.innerHTML = '';
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         const choice = currentQuestion.choices[i];
@@ -139,7 +139,7 @@ function selectAnswer(event) {
 
 function endQuiz() {
     clearInterval(timerInterval)
-    questionQuiz.setAttribute("class", "hide")
+    questions.setAttribute("class", "hide")
     endScreen.removeAttribute("class")
 }
 
