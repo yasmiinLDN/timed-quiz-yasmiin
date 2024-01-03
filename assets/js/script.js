@@ -17,7 +17,7 @@ const feedbackEl = document.getElementById("feedback")
 // Each question needs the following:
 // Question text
 // Set of answers
-// Which answer is correct
+// Which answer is correct?
 
 let questionQuiz = [
     {
