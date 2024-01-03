@@ -2,7 +2,7 @@
 /// starter code (29th Dec) -- test in index !
 
 let timerEl = document.getElementById("time")
-let startScreen = documen.getElementById("start-screen")
+let startScreen = document.getElementById("start-screen")
 const startBtn = document.getElementById("start")
 const questionTitle = document.getElementById("question-title")
 const questionChoices = document.getElementById("choices")
@@ -14,70 +14,54 @@ const feedbackEl = document.getElementById("feedback")
 
 // Set of questions --> array of objects
 // Each question needs the following:
-  // Question text
-  // Set of answers
-  // Which answer is correct
+// Question text
+// Set of answers
+// Which answer is correct
 
-  let questions = [
+// REMOVE BELOW COMMENTS
+// let questions = [
+//     {
+//   title: "First Question",
+//   choices: "ChoiceA, ChoiceB, ChoiceC",
+//   answer: "ChoiceB",
+//     },  
+
+let questions = [
     {
-        1: "1) Commonly used data types DO NOT include",
+        title: "1) Commonly used data types DO NOT include",
         choices: ["A. Strings", "B. Booleans", "C. Alerts", "D. Numbers"],
         answer: "B. Booleans",
     },
     {
-        2: "2) The condition in an if/else statement is enclosed within _____.",
+        title: "2) The condition in an if/else statement is enclosed within _____.",
         choices: ["A. Quotes", "B. Curly brackets", "C. Parentheses", "D. Square brackets"],
         answer: "C. Parentheses",
     },
     {
-        3: "3) Arrays in JavaScript can be used to store ____.",
+        title: "3) Arrays in JavaScript can be used to store ____.",
         choices: ["A. Numbers and strings", "B. Other arrays", "C. Booleans", "D. All of the above"],
         answer: "D. All of the above",
     },
     {
-        4: "4) String vaules must be enclosed within ______ when being assigned to variables",
+        title: "4) String vaules must be enclosed within ______ when being assigned to variables",
         choices: ["A. Commas", "B. Curly brackets", "C. Quotes", "D. Parentheses"],
         answer: "B. Curly brackets",
     },
     {
-        5: "5) A very useful tool used during development and debugging for printing content to the debugger is:",
+        title: "5) A very useful tool used during development and debugging for printing content to the debugger is:",
         choices: ["A. Javascript", "B. Terminal/Bash", "C. For loops", "D. Console.log"],
         answer: "C. For loops",
     }
 ]
 
 // Landing page:
-  // Explanation of the quiz
-  // Start button
+// Explanation of the quiz
+// Start button
 
 // Click the start button:
-  // Landing page goes away (can be done with CSS --> questions have a class of "hide")
-  // Timer starts (NEED a conditional in there to check whether the answer was correct, which means you need to track whether the answer was correct).
-  // The first question appears (with its answers)
-
-// For each question:
-  // User clicks an answer
-  // Their choice is compared to the correct answer as stored in the question's object
-  // If correct, tell them
-  // If incorrect, tell them AND subtract time from the timer
-  // Optional: play a sound for correct or incorrect
-  // Either way, the question disappears after a few seconds and the next question appears
-
-// After the last question:
-  // Timer stops
-  // Question disappears
-  // Form appears for user to enter their initials
-  // Display their score
-
-// User submits form
-  // Initials and score get stored in local storage
-  // User is taken to the high scores page
-  // High scores are listed, sorted highest to lowest
-  // User has option to take the quiz again
-
-
-
-
+// Landing page goes away (can be done with CSS --> questions have a class of "hide")
+// Timer starts (NEED a conditional in there to check whether the answer was correct, which means you need to track whether the answer was correct).
+// The first question appears (with its answers)
 
 let timerInterval;
 let questionIndex = 0
@@ -94,8 +78,6 @@ function startQuiz() {
             endQuiz()
         }
     }, 1000)
-
-
 }
 
 function getQuestions() {
@@ -114,6 +96,15 @@ function getQuestions() {
         questionChoices.appendChild(choiceBtn)
     }
 }
+
+// For each question:
+// User clicks an answer
+// Their choice is compared to the correct answer as stored in the question's object
+// If correct, tell them
+// If incorrect, tell them AND subtract time from the timer
+// Optional: play a sound for correct or incorrect
+// Either way, the question disappears after a few seconds and the next question appears
+
 function selectAnswer(event) {
     if (event.target.value !== questions[questionIndex].answer) {
         timer -= 15
@@ -143,8 +134,21 @@ function selectAnswer(event) {
 
 }
 
+// After the last question:
+// Timer stops
+// Question disappears
+// Form appears for user to enter their initials
+// Display their score
+
 function endQuiz() {
     clearInterval(timerInterval)
     questions.setAttribute("class", "hide")
     endScreen.removeAttribute("class")
 }
+
+// User submits form
+// Initials and score get stored in local storage
+// User is taken to the high scores page
+// High scores are listed, sorted highest to lowest
+// User has option to take the quiz again
+
