@@ -30,7 +30,7 @@ This project involved employing a number of javascript functions and concepts to
 
 Below shows the layout of the password generator:
 
-![screenshot of console](challenge-screenshot.png)
+![GIF of console](./assets/08-web-apis-challenge-demo.gif)
 
 
 ## Credits
