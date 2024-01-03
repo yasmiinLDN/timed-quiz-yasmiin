@@ -4,29 +4,22 @@
 let timerEl = document.getElementById("time")
 let startScreen = document.getElementById("start-screen")
 const startBtn = document.getElementById("start")
+const questions = document.getElementById("questions")
 const questionTitle = document.getElementById("question-title")
 const questionChoices = document.getElementById("choices")
 const endScreen = document.getElementById("end-screen")
 const finalScore = document.getElementById("final-score")
-const initials = document.getElementById("initals")
+const initials = document.getElementById("initials")
 const submitBtn = document.getElementById("submit")
 const feedbackEl = document.getElementById("feedback")
 
-// Set of questions --> array of objects
+// Set of questionQuiz --> array of objects
 // Each question needs the following:
 // Question text
 // Set of answers
 // Which answer is correct
 
-// REMOVE BELOW COMMENTS
-// let questions = [
-//     {
-//   title: "First Question",
-//   choices: "ChoiceA, ChoiceB, ChoiceC",
-//   answer: "ChoiceB",
-//     },  
-
-let questions = [
+let questionQuiz = [
     {
         title: "1) Commonly used data types DO NOT include",
         choices: ["A. Strings", "B. Booleans", "C. Alerts", "D. Numbers"],
@@ -43,7 +36,7 @@ let questions = [
         answer: "D. All of the above",
     },
     {
-        title: "4) String vaules must be enclosed within ______ when being assigned to variables",
+        title: "4) String values must be enclosed within ______ when being assigned to variables",
         choices: ["A. Commas", "B. Curly brackets", "C. Quotes", "D. Parentheses"],
         answer: "B. Curly brackets",
     },
@@ -65,33 +58,37 @@ let questions = [
 
 let timerInterval;
 let questionIndex = 0
-let timer = questions.length * 15
+let timer = questionQuiz.length * 15
 
 function startQuiz() {
-    startScreen.setAttribute("class", "hide")
-    questions.removeAttribute("class")
+    startScreen.classList.add("hide")
+    questions.classList.remove("hide")
     timerInterval = setInterval(function () {
         timer--
-        timerEl.textcontent = timer
+        timerEl.textContent = timer
 
         if (timer <= 0) {
             endQuiz()
         }
     }, 1000)
+
+getQuestions();
+    
 }
 
 function getQuestions() {
-    let currentQuestion = questions[questionIndex]
-
-    titilEl.textcontent = currentQuestion.title
-
-    for (let i = 0; i < currentQuestion.length; i++) {
+    let currentQuestion = questionQuiz[questionIndex]
+console.log(currentQuestion);
+    questionTitle.textContent = currentQuestion.title
+    questionChoices.innerHTML = '';
+    for (let i = 0; i < currentQuestion.choices.length; i++) {
         const choice = currentQuestion.choices[i];
         let choiceBtn = document.createElement("button")
         choiceBtn.setAttribute("class", "choice")
         choiceBtn.setAttribute("value", choice)
         choiceBtn.textContent = choice
-        choiceBtn.addEventListener("click", selectAnswer)
+        choiceBtn.onclick = selectAnswer
+        // onclick works similarly to addEventListener but prevent potential bugginess of addEventListener when used in for loop 
 
         questionChoices.appendChild(choiceBtn)
     }
@@ -106,7 +103,7 @@ function getQuestions() {
 // Either way, the question disappears after a few seconds and the next question appears
 
 function selectAnswer(event) {
-    if (event.target.value !== questions[questionIndex].answer) {
+    if (event.target.value !== questionQuiz[questionIndex].answer) {
         timer -= 15
         if (timer < 0) {
             timer = 0
@@ -126,7 +123,7 @@ function selectAnswer(event) {
 
     questionIndex++
 
-    if (questionIndex === questions.length) {
+    if (questionIndex === questionQuiz.length) {
         endQuiz()
     } else {
         getQuestions()
@@ -142,7 +139,7 @@ function selectAnswer(event) {
 
 function endQuiz() {
     clearInterval(timerInterval)
-    questions.setAttribute("class", "hide")
+    questionQuiz.setAttribute("class", "hide")
     endScreen.removeAttribute("class")
 }
 
@@ -152,3 +149,4 @@ function endQuiz() {
 // High scores are listed, sorted highest to lowest
 // User has option to take the quiz again
 
+startBtn.addEventListener('click', startQuiz);
