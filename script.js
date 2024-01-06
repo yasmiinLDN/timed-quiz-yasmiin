@@ -1,5 +1,3 @@
-// PSEUDOCODE FOR QUIZ
-/// starter code (29th Dec) -- test in index !
 
 let timerEl = document.getElementById("time")
 let startScreen = document.getElementById("start-screen")
@@ -13,7 +11,7 @@ const initials = document.getElementById("initials")
 const submitBtn = document.getElementById("submit")
 const feedbackEl = document.getElementById("feedback")
 
-// Set of questionQuiz --> array of objects
+// Set of questions --> array of objects
 // Each question needs the following:
 // Question text
 // Set of answers
@@ -56,6 +54,10 @@ let questionQuiz = [
 // Timer starts (NEED a conditional in there to check whether the answer was correct, which means you need to track whether the answer was correct).
 // The first question appears (with its answers)
 
+
+// BUTTON starts the quiz
+startBtn.addEventListener('click', startQuiz);
+
 let timerInterval;
 let questionIndex = 0
 let timer = questionQuiz.length * 15
@@ -72,13 +74,13 @@ function startQuiz() {
         }
     }, 1000)
 
-getQuestions();
-    
+    getQuestions();
+
 }
 
 function getQuestions() {
     let currentQuestion = questionQuiz[questionIndex]
-console.log(currentQuestion);
+    console.log(currentQuestion);
     questionTitle.textContent = currentQuestion.qTitle
     questionChoices.innerHTML = '';
     for (let i = 0; i < currentQuestion.choices.length; i++) {
@@ -141,7 +143,10 @@ function endQuiz() {
     clearInterval(timerInterval)
     questions.setAttribute("class", "hide")
     endScreen.removeAttribute("class")
+    finalScore.textContent = timer
 }
+
+
 
 // User submits form
 // Initials and score get stored in local storage
@@ -149,10 +154,21 @@ function endQuiz() {
 // High scores are listed, sorted highest to lowest
 // User has option to take the quiz again
 
+// button stores quiz score
+submitBtn.addEventListener('click', playerScore)
 
-/// STORE INITIALS
-/// STORE SCORE
 
+function playerScore() {
+    let scoreHistory = JSON.parse(localStorage.getItem('highScores')) || []
 
-// button starts the quiz
-startBtn.addEventListener('click', startQuiz);
+    let Player = {
+        // initials key below is linked to 'initials' in index.html - line 12
+        initials: initials.value,
+        score: timer
+    }
+
+    scoreHistory.push(Player)
+
+    localStorage.setItem('highScores', JSON.stringify(scoreHistory))
+    document.location.replace("./highscores.html")
+}
